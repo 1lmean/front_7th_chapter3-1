@@ -9,6 +9,7 @@ import type { Post } from "../services/postService";
 import "../styles/components.css";
 import { ManagementLayout } from "@/components/templates/ManagementLayout";
 import { ManagementTab } from "@/components/ManagementTab";
+import { ManagementAlert } from "@/components/ManagementAlert";
 
 type EntityType = "user" | "post";
 type Entity = User | Post;
@@ -276,27 +277,19 @@ export const ManagementPage: React.FC = () => {
           </div>
 
           {showSuccessAlert && (
-            <div style={{ marginBottom: "10px" }}>
-              <Alert
-                variant="success"
-                title="성공"
-                onClose={() => setShowSuccessAlert(false)}
-              >
-                {alertMessage}
-              </Alert>
-            </div>
+            <ManagementAlert
+              message={alertMessage}
+              variant="success"
+              onClose={() => setShowSuccessAlert(false)}
+            />
           )}
 
           {showErrorAlert && (
-            <div style={{ marginBottom: "10px" }}>
-              <Alert
-                variant="error"
-                title="오류"
-                onClose={() => setShowErrorAlert(false)}
-              >
-                {errorMessage}
-              </Alert>
-            </div>
+            <ManagementAlert
+              message={errorMessage}
+              variant="error"
+              onClose={() => setShowErrorAlert(false)}
+            />
           )}
 
           <div
