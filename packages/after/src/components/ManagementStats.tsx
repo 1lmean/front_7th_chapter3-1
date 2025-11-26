@@ -74,6 +74,9 @@ export const ManagementStats = () => {
   const { entityType } = useManagementTab();
   const { data } = useManagementData();
 
+  // 현재 데이터 규모(수십~수백 개)에서는 useMemo 없이도 충분하지만,
+  // 데이터가 많아질 경우를 대비해 메모이제이션 적용
+  // 참고: 성능 문제가 측정되기 전까지는 과도한 최적화 지양
   const stats = useMemo(
     () => getStats(entityType, data as User[] | Post[]),
     [entityType, data]
