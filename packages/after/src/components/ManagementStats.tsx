@@ -66,14 +66,7 @@ export const ManagementStats = ({ entityType, data }: ManagementStatsProps) => {
   const stats = getStats(entityType, data as User[] | Post[]);
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-        gap: "10px",
-        marginBottom: "15px",
-      }}
-    >
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-2.5 mb-4">
       <ManagementStatCard label="전체" value={stats.total} variant="blue" />
 
       <ManagementStatCard
