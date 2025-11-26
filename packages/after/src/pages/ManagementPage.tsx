@@ -11,12 +11,13 @@ import { ManagementLayout } from "@/components/templates/ManagementLayout";
 import { ManagementTab } from "@/components/ManagementTab";
 import { ManagementAlert } from "@/components/ManagementAlert";
 import { ManagementStats } from "@/components/ManagementStats";
+import { ManagementTabProvider } from "@/context/ManagementTabContext";
+import { useManagementTab } from "@/hooks/useManagementTab";
 
-type EntityType = "user" | "post";
 type Entity = User | Post;
 
-export const ManagementPage: React.FC = () => {
-  const [entityType, setEntityType] = useState<EntityType>("post");
+const ManagementPageContent: React.FC = () => {
+  const { entityType, setEntityType } = useManagementTab();
   const [data, setData] = useState<Entity[]>([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -209,7 +210,7 @@ export const ManagementPage: React.FC = () => {
   return (
     <div style={{ minHeight: "100vh", background: "#f0f0f0" }}>
       <ManagementLayout>
-        <ManagementTab entityType={entityType} setEntityType={setEntityType} />
+        <ManagementTab />
         <div>
           <div style={{ marginBottom: "15px", textAlign: "right" }}>
             <Button
@@ -237,7 +238,7 @@ export const ManagementPage: React.FC = () => {
             />
           )}
 
-          <ManagementStats entityType={entityType} data={data} />
+          <ManagementStats data={data} />
 
           <div
             style={{
@@ -574,5 +575,13 @@ export const ManagementPage: React.FC = () => {
         </div>
       </Modal>
     </div>
+  );
+};
+
+export const ManagementPage: React.FC = () => {
+  return (
+    <ManagementTabProvider>
+      <ManagementPageContent />
+    </ManagementTabProvider>
   );
 };

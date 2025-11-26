@@ -1,10 +1,9 @@
 import { ManagementStatCard } from "./MangementStatCard";
 import type { User } from "@/services/userService";
 import type { Post } from "@/services/postService";
-
+import { useManagementTab } from "@/hooks/useManagementTab";
 type Entity = User | Post;
 interface ManagementStatsProps {
-  entityType: "user" | "post";
   data: Entity[];
 }
 
@@ -62,7 +61,8 @@ const getStats = (entityType: "user" | "post", data: User[] | Post[]) => {
   }
 };
 
-export const ManagementStats = ({ entityType, data }: ManagementStatsProps) => {
+export const ManagementStats = ({ data }: ManagementStatsProps) => {
+  const { entityType } = useManagementTab();
   const stats = getStats(entityType, data as User[] | Post[]);
 
   return (

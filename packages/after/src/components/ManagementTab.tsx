@@ -1,12 +1,8 @@
-interface ManagementTabProps {
-  entityType: "user" | "post";
-  setEntityType: (entityType: "user" | "post") => void;
-}
+import { useManagementTab } from "@/hooks/useManagementTab";
 
-export const ManagementTab = ({
-  entityType,
-  setEntityType,
-}: ManagementTabProps) => {
+export const ManagementTab = () => {
+  const { entityType, setEntityType } = useManagementTab();
+
   const baseButtonClass =
     "px-4 py-2 text-sm border border-gray-400 cursor-pointer rounded";
   const activeClass = "font-bold bg-blue-600 text-white";
