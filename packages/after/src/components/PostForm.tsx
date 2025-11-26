@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FormInput } from "./molecules/FormInput";
-import { FormSelect } from "./molecules/FormSelect";
+import { FormInput } from "./templates/FormInput";
+import { FormSelect } from "./templates/FormSelect";
 import { FormTextarea } from "./molecules/FormTextarea";
 import { Button } from "./ui/button";
 import { Alert } from "./organisms/Alert";

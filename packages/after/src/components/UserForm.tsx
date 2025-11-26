@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FormInput } from "./molecules/FormInput";
-import { FormSelect } from "./molecules/FormSelect";
+// import { FormInput } from "./molecules/FormInput";
+// import { FormSelect } from "./molecules/FormSelect";
 import { Button } from "./ui/button";
+import { FormInput } from "./templates/FormInput";
+import { FormSelect } from "./templates/FormSelect";
 import { Alert } from "./organisms/Alert";
 import { userService } from "@/services/userService";
 import { useManagementData } from "@/hooks/useManagementData";
