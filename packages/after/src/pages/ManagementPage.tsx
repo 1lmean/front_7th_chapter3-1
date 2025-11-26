@@ -25,6 +25,21 @@ const ManagementPageContent: React.FC = () => {
   const { data, loadData } = useManagementData();
   const { alert, showSuccess, showError, hideAlert } = useManagementAlert();
 
+  /**
+   * Modal 상태 관리 - Local State 패턴
+   *
+   * 📌 현재 패턴 선택 이유:
+   * - 모달이 ManagementPage에서만 사용됨 (단일 소비자)
+   * - 다른 페이지와 모달 상태 공유 불필요
+   * - 프로젝트 규모가 작아 복잡도 최소화 우선
+   *
+   * 🔄 확장 시 고려사항:
+   * - 여러 페이지에서 동일 모달 사용 시 → useModal 훅 분리 권장
+   * - 모달이 3개 이상으로 늘어날 경우 → Modal Context 도입 검토
+   * - 모달 스택(모달 위 모달) 필요 시 → Global Modal Manager 패턴
+   *
+   * 참고: 대규모 서비스에서는 useModal 훅이나 전역 Modal Context가 일반적
+   */
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Entity | null>(null);
 
