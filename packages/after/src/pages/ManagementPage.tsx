@@ -12,13 +12,15 @@ import { ManagementTab } from "@/components/ManagementTab";
 import { ManagementAlert } from "@/components/ManagementAlert";
 import { ManagementStats } from "@/components/ManagementStats";
 import { ManagementTabProvider } from "@/context/ManagementTabContext";
+import { ManagementDataProvider } from "@/context/ManagementDataContext";
 import { useManagementTab } from "@/hooks/useManagementTab";
+import { useManagementData } from "@/hooks/useManagementData";
 
 type Entity = User | Post;
 
 const ManagementPageContent: React.FC = () => {
-  const { entityType, setEntityType } = useManagementTab();
-  const [data, setData] = useState<Entity[]>([]);
+  const { entityType } = useManagementTab();
+  const { data, loadData } = useManagementData();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Entity | null>(null);
@@ -36,23 +38,6 @@ const ManagementPageContent: React.FC = () => {
     setIsEditModalOpen(false);
     setSelectedItem(null);
   }, [entityType]);
-
-  const loadData = async () => {
-    try {
-      let result: Entity[];
-
-      if (entityType === "user") {
-        result = await userService.getAll();
-      } else {
-        result = await postService.getAll();
-      }
-
-      setData(result);
-    } catch (error: any) {
-      setErrorMessage("데이터를 불러오는데 실패했습니다");
-      setShowErrorAlert(true);
-    }
-  };
 
   const handleCreate = async () => {
     try {
@@ -238,7 +223,7 @@ const ManagementPageContent: React.FC = () => {
             />
           )}
 
-          <ManagementStats data={data} />
+          <ManagementStats />
 
           <div
             style={{
@@ -581,7 +566,9 @@ const ManagementPageContent: React.FC = () => {
 export const ManagementPage: React.FC = () => {
   return (
     <ManagementTabProvider>
-      <ManagementPageContent />
+      <ManagementDataProvider>
+        <ManagementPageContent />
+      </ManagementDataProvider>
     </ManagementTabProvider>
   );
 };
