@@ -13,22 +13,21 @@ import { ManagementAlert } from "@/components/ManagementAlert";
 import { ManagementStats } from "@/components/ManagementStats";
 import { ManagementTabProvider } from "@/context/ManagementTabContext";
 import { ManagementDataProvider } from "@/context/ManagementDataContext";
+import { ManagementAlertProvider } from "@/context/ManagementAlertContext";
 import { useManagementTab } from "@/hooks/useManagementTab";
 import { useManagementData } from "@/hooks/useManagementData";
+import { useManagementAlert } from "@/hooks/useManagementAlert";
 
 type Entity = User | Post;
 
 const ManagementPageContent: React.FC = () => {
   const { entityType } = useManagementTab();
   const { data, loadData } = useManagementData();
+  const { alert, showSuccess, showError, hideAlert } = useManagementAlert();
+
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Entity | null>(null);
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
   const [formData, setFormData] = useState<any>({});
 
   useEffect(() => {
@@ -61,13 +60,11 @@ const ManagementPageContent: React.FC = () => {
       await loadData();
       setIsCreateModalOpen(false);
       setFormData({});
-      setAlertMessage(
+      showSuccess(
         `${entityType === "user" ? "사용자" : "게시글"}가 생성되었습니다`
       );
-      setShowSuccessAlert(true);
     } catch (error: any) {
-      setErrorMessage(error.message || "생성에 실패했습니다");
-      setShowErrorAlert(true);
+      showError(error.message || "생성에 실패했습니다");
     }
   };
 
@@ -110,13 +107,11 @@ const ManagementPageContent: React.FC = () => {
       setIsEditModalOpen(false);
       setFormData({});
       setSelectedItem(null);
-      setAlertMessage(
+      showSuccess(
         `${entityType === "user" ? "사용자" : "게시글"}가 수정되었습니다`
       );
-      setShowSuccessAlert(true);
     } catch (error: any) {
-      setErrorMessage(error.message || "수정에 실패했습니다");
-      setShowErrorAlert(true);
+      showError(error.message || "수정에 실패했습니다");
     }
   };
 
@@ -131,11 +126,9 @@ const ManagementPageContent: React.FC = () => {
       }
 
       await loadData();
-      setAlertMessage("삭제되었습니다");
-      setShowSuccessAlert(true);
+      showSuccess("삭제되었습니다");
     } catch (error: any) {
-      setErrorMessage(error.message || "삭제에 실패했습니다");
-      setShowErrorAlert(true);
+      showError(error.message || "삭제에 실패했습니다");
     }
   };
 
@@ -157,11 +150,9 @@ const ManagementPageContent: React.FC = () => {
       await loadData();
       const message =
         action === "publish" ? "게시" : action === "archive" ? "보관" : "복원";
-      setAlertMessage(`${message}되었습니다`);
-      setShowSuccessAlert(true);
+      showSuccess(`${message}되었습니다`);
     } catch (error: any) {
-      setErrorMessage(error.message || "작업에 실패했습니다");
-      setShowErrorAlert(true);
+      showError(error.message || "작업에 실패했습니다");
     }
   };
 
@@ -207,19 +198,11 @@ const ManagementPageContent: React.FC = () => {
             </Button>
           </div>
 
-          {showSuccessAlert && (
+          {alert.isVisible && (
             <ManagementAlert
-              message={alertMessage}
-              variant="success"
-              onClose={() => setShowSuccessAlert(false)}
-            />
-          )}
-
-          {showErrorAlert && (
-            <ManagementAlert
-              message={errorMessage}
-              variant="error"
-              onClose={() => setShowErrorAlert(false)}
+              message={alert.message}
+              variant={alert.variant}
+              onClose={hideAlert}
             />
           )}
 
@@ -567,7 +550,9 @@ export const ManagementPage: React.FC = () => {
   return (
     <ManagementTabProvider>
       <ManagementDataProvider>
-        <ManagementPageContent />
+        <ManagementAlertProvider>
+          <ManagementPageContent />
+        </ManagementAlertProvider>
       </ManagementDataProvider>
     </ManagementTabProvider>
   );
