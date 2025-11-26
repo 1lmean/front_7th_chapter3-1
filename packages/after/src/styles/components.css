@@ -623,3 +623,17 @@
   gap: 8px;
   justify-content: flex-end;
 }
+
+.form-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.form-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
