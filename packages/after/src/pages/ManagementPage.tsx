@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../components/atoms";
-import { Table } from "../components/organisms";
+import { Button } from "@/components/ui/button";
+import { ManagementTable } from "@/components/templates/ManagementTable";
 import { userService } from "../services/userService";
 import { postService } from "../services/postService";
 import type { User } from "../services/userService";
@@ -132,14 +132,12 @@ const ManagementPageContent: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f0f0f0" }}>
+    <div className="min-h-screen bg-gray-100">
       <ManagementLayout>
         <ManagementTab />
         <div>
-          <div style={{ marginBottom: "15px", textAlign: "right" }}>
-            <Button variant="primary" size="md" onClick={handleOpenCreateModal}>
-              새로 만들기
-            </Button>
+          <div className="mb-4 text-right">
+            <Button onClick={handleOpenCreateModal}>새로 만들기</Button>
           </div>
 
           {alert.isVisible && (
@@ -152,14 +150,8 @@ const ManagementPageContent: React.FC = () => {
 
           <ManagementStats />
 
-          <div
-            style={{
-              border: "1px solid #ddd",
-              background: "white",
-              overflow: "auto",
-            }}
-          >
-            <Table
+          <div className="border border-gray-200 bg-white rounded-md overflow-auto">
+            <ManagementTable
               columns={renderTableColumns()}
               data={data}
               striped
