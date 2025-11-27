@@ -16,14 +16,14 @@ export const ManagementAlert = ({
   const isInfo = variant === "info";
 
   const getAlertStyles = () => {
-    if (isSuccess) return "border-green-500 bg-green-50 text-green-800";
-    if (isInfo) return "border-blue-500 bg-blue-50 text-blue-800";
+    if (isSuccess) return "border-green-500 bg-green-50 text-green-800 dark:bg-green-900 dark:text-green-200 dark:border-green-800";
+    if (isInfo) return "border-blue-500 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800";
     return ""; // error는 destructive 기본 스타일
   };
 
   const getIcon = () => {
-    if (isSuccess) return <CircleCheck className="h-4 w-4 text-green-600" />;
-    if (isInfo) return <Info className="h-4 w-4 text-blue-600" />;
+    if (isSuccess) return <CircleCheck className="h-4 w-4 text-green-600 dark:text-green-400" />;
+    if (isInfo) return <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />;
     return <CircleX className="h-4 w-4" />;
   };
 

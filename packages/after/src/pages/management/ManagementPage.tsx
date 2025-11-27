@@ -132,7 +132,7 @@ const ManagementPageContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-muted">
       <ManagementLayout>
         <ManagementTab />
         <div>
@@ -150,7 +150,7 @@ const ManagementPageContent: React.FC = () => {
 
           <ManagementStats />
 
-          <div className="border border-gray-200 bg-white rounded-md overflow-auto">
+          <div className="border border-border bg-card rounded-md overflow-auto">
             <ManagementTable
               columns={renderTableColumns()}
               data={data}

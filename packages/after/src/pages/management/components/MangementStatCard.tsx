@@ -5,11 +5,11 @@ interface ManagementStatCardProps {
 }
 
 const variantStyles = {
-  blue: "bg-blue-50 border-blue-300 text-blue-600",
-  green: "bg-green-50 border-green-300 text-green-600",
-  orange: "bg-orange-50 border-orange-300 text-orange-600",
-  red: "bg-red-50 border-red-300 text-red-600",
-  gray: "bg-gray-100 border-gray-300 text-gray-600",
+  blue: "bg-blue-50 border-blue-300 text-blue-600 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300",
+  green: "bg-green-50 border-green-300 text-green-600 dark:bg-green-900 dark:border-green-700 dark:text-green-300",
+  orange: "bg-orange-50 border-orange-300 text-orange-600 dark:bg-orange-900 dark:border-orange-700 dark:text-orange-300",
+  red: "bg-red-50 border-red-300 text-red-600 dark:bg-red-900 dark:border-red-700 dark:text-red-300",
+  gray: "bg-muted border-border text-muted-foreground",
 };
 
 export const ManagementStatCard = ({
@@ -19,10 +19,8 @@ export const ManagementStatCard = ({
 }: ManagementStatCardProps) => {
   return (
     <div className={`px-4 py-3 border rounded ${variantStyles[variant]}`}>
-      <div className="text-xs text-gray-500 mb-1">{label}</div>
-      <div
-        className={`text-2xl font-bold ${variantStyles[variant].split(" ")[2]}`}
-      >
+      <div className="text-xs text-muted-foreground mb-1">{label}</div>
+      <div className="text-2xl font-bold">
         {value}
       </div>
     </div>

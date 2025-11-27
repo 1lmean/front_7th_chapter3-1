@@ -52,15 +52,15 @@ const StatusBadge = ({
     const config: Record<string, { label: string; className: string }> = {
       active: {
         label: "활성",
-        className: "bg-green-100 text-green-800 border-green-200",
+        className: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-800",
       },
       inactive: {
         label: "비활성",
-        className: "bg-yellow-100 text-yellow-800 border-yellow-200",
+        className: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800",
       },
       suspended: {
         label: "정지",
-        className: "bg-red-100 text-red-800 border-red-200",
+        className: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-800",
       },
     };
     const { label, className } = config[status] || {
@@ -78,15 +78,15 @@ const StatusBadge = ({
   const config: Record<string, { label: string; className: string }> = {
     published: {
       label: "게시됨",
-      className: "bg-green-100 text-green-800 border-green-200",
+      className: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-800",
     },
     draft: {
       label: "임시저장",
-      className: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      className: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800",
     },
     archived: {
       label: "보관됨",
-      className: "bg-gray-100 text-gray-800 border-gray-200",
+      className: "bg-muted text-muted-foreground border-border",
     },
   };
   const { label, className } = config[status] || {
@@ -107,19 +107,19 @@ const RoleBadge = ({ role }: { role: string }) => {
   const config: Record<string, { label: string; className: string }> = {
     admin: {
       label: "관리자",
-      className: "bg-red-100 text-red-800 border-red-200",
+      className: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-800",
     },
     moderator: {
       label: "운영자",
-      className: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      className: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800",
     },
     user: {
       label: "사용자",
-      className: "bg-blue-100 text-blue-800 border-blue-200",
+      className: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800",
     },
     guest: {
       label: "게스트",
-      className: "bg-gray-100 text-gray-800 border-gray-200",
+      className: "bg-muted text-muted-foreground border-border",
     },
   };
   const { label, className } = config[role] || { label: role, className: "" };
@@ -135,12 +135,12 @@ const RoleBadge = ({ role }: { role: string }) => {
  */
 const CategoryBadge = ({ category }: { category: string }) => {
   const config: Record<string, { className: string }> = {
-    development: { className: "bg-blue-100 text-blue-800 border-blue-200" },
-    design: { className: "bg-purple-100 text-purple-800 border-purple-200" },
-    accessibility: { className: "bg-red-100 text-red-800 border-red-200" },
+    development: { className: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800" },
+    design: { className: "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:border-purple-800" },
+    accessibility: { className: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-800" },
   };
   const { className } = config[category] || {
-    className: "bg-gray-100 text-gray-800 border-gray-200",
+    className: "bg-muted text-muted-foreground border-border",
   };
   return (
     <Badge variant="outline" className={className}>
@@ -281,7 +281,7 @@ export const ManagementTable: React.FC<ManagementTableProps> = ({
             {row.status === "draft" && (
               <Button
                 size="sm"
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-green-600 hover:bg-green-700 text-white dark:bg-green-700 dark:hover:bg-green-600"
                 onClick={() => onPublish?.(row.id)}
               >
                 게시
