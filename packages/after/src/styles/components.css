@@ -1,7 +1,7 @@
 /* Button styles */
 .btn {
   display: inline-block;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   font-weight: normal;
   line-height: 1.5;
   border-radius: 3px;
@@ -85,7 +85,7 @@
   color: #333;
   font-size: 13px;
   font-weight: bold;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 .form-input,
@@ -93,7 +93,7 @@
   width: 100%;
   padding: 8px 10px;
   font-size: 14px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   color: #000;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -121,7 +121,7 @@
 .form-helper-text {
   color: #666;
   font-size: 12px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   margin-top: 4px;
 }
 
@@ -148,7 +148,7 @@
   margin-bottom: 16px;
   overflow: hidden;
   background-color: #fff;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
 }
 
 .card-default {
@@ -209,7 +209,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   line-height: 1;
   white-space: nowrap;
   border-radius: 3px;
@@ -268,7 +268,7 @@
   margin-bottom: 16px;
   border-radius: 3px;
   border: 1px solid;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   display: flex;
   gap: 8px;
   align-items: flex-start;
@@ -402,7 +402,7 @@
   cursor: pointer;
   line-height: 1.4;
   user-select: none;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
 }
 
 .checkbox-label.error {
@@ -419,7 +419,7 @@
   margin-top: 2px;
   margin-left: 24px;
   display: block;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
 }
 
 .checkbox-error {
@@ -428,7 +428,7 @@
   margin-top: 2px;
   margin-left: 24px;
   display: block;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
 }
 
 /* Textarea styles */
@@ -437,7 +437,7 @@
   min-height: 6em;
   padding: 16.5px 14px;
   font-size: 16px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
   font-weight: 400;
   line-height: 1.1876em;
   color: rgba(0, 0, 0, 0.87);
@@ -486,7 +486,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
   font-size: 0.875rem;
   background-color: #fff;
 }
@@ -555,7 +555,7 @@
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: inherit;
 }
 
 .modal-small {
