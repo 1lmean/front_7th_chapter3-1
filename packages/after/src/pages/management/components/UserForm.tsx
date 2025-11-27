@@ -1,15 +1,18 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/shared/FormInput";
-import { FormSelect } from "@/components/shared/FormSelect";
-import { ManagementAlert } from "./ManagementAlert";
-import { userService } from "@/services/userService";
+// src/pages/management/components/UserForm.tsx
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema, type UserFormData } from "../schemas/userSchema";
+import type { User } from "@/services/userService";
 import { useManagementData } from "../hooks/useManagementData";
 import { useManagementAlert } from "../hooks/useManagementAlert";
-import type { User } from "@/services/userService";
+import { userService } from "@/services/userService";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface UserFormProps {
-  data: User | null; // null = create, User = edit
+  data: User | null;
   onCancel: () => void;
 }
 
@@ -18,109 +21,118 @@ export const UserForm = ({ data, onCancel }: UserFormProps) => {
   const { showSuccess, showError } = useManagementAlert();
   const isEditMode = data !== null;
 
-  const [formData, setFormData] = useState<Partial<User>>(data ?? {});
+  // 1️⃣ useForm 훅 설정
+  const {
+    register, // input 연결
+    handleSubmit, // 폼 제출 핸들러
+    formState: { errors, isSubmitting }, // 에러 상태
+  } = useForm<UserFormData>({
+    resolver: zodResolver(userSchema), // Zod 연결
+    mode: "onChange",
+    defaultValues: {
+      username: data?.username ?? "",
+      email: data?.email ?? "",
+      role: data?.role ?? "user",
+      status: data?.status ?? "active",
+    },
+  });
 
-  const handleSubmit = async () => {
+  // 2️⃣ 폼 제출 핸들러
+  const onSubmit = async (formData: UserFormData) => {
     try {
       if (isEditMode) {
         await userService.update(data.id, formData);
         showSuccess("사용자가 수정되었습니다");
       } else {
-        await userService.create({
-          username: formData.username!,
-          email: formData.email!,
-          role: formData.role || "user",
-          status: formData.status || "active",
-        });
+        await userService.create(formData);
         showSuccess("사용자가 생성되었습니다");
       }
       await loadData();
       onCancel();
     } catch (error: any) {
-      showError(
-        error.message || `${isEditMode ? "수정" : "생성"}에 실패했습니다`
-      );
+      showError(error.message || "작업에 실패했습니다");
     }
   };
 
   return (
-    <>
+    // 3️⃣ handleSubmit으로 감싸기
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="modal-body">
-        {isEditMode && (
-          <ManagementAlert
-            message={`ID: ${data.id} | 생성일: ${data.createdAt}`}
-            variant="info"
-            onClose={() => {}}
-          />
-        )}
         <div className="space-y-4">
-          <FormInput
-            name="username"
-            value={formData.username || ""}
-            onChange={(value) => setFormData({ ...formData, username: value })}
-            label="사용자명"
-            placeholder="사용자명을 입력하세요"
-            required
-            width="full"
-            fieldType="username"
-          />
-          <FormInput
-            name="email"
-            value={formData.email || ""}
-            onChange={(value) => setFormData({ ...formData, email: value })}
-            label="이메일"
-            placeholder="이메일을 입력하세요"
-            type="email"
-            required
-            width="full"
-            fieldType="email"
-          />
+          {/* 4️⃣ register로 input 연결 */}
+          <div className="space-y-2">
+            <Label htmlFor="username">
+              사용자명 <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              {...register("username")}
+              placeholder="사용자명을 입력하세요"
+            />
+            {errors.username && (
+              <p className="text-sm text-destructive">
+                {errors.username.message}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="email">
+              이메일 <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              {...register("email")}
+              type="email"
+              placeholder="이메일을 입력하세요"
+            />
+            {errors.email && (
+              <p className="text-sm text-destructive">{errors.email.message}</p>
+            )}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
-            <FormSelect
-              name="role"
-              value={formData.role || "user"}
-              onChange={(value) =>
-                setFormData({
-                  ...formData,
-                  role: value as "admin" | "moderator" | "user",
-                })
-              }
-              options={[
-                { value: "user", label: "사용자" },
-                { value: "moderator", label: "운영자" },
-                { value: "admin", label: "관리자" },
-              ]}
-              label="역할"
-              size="md"
-            />
-            <FormSelect
-              name="status"
-              value={formData.status || "active"}
-              onChange={(value) =>
-                setFormData({
-                  ...formData,
-                  status: value as "active" | "inactive" | "suspended",
-                })
-              }
-              options={[
-                { value: "active", label: "활성" },
-                { value: "inactive", label: "비활성" },
-                { value: "suspended", label: "정지" },
-              ]}
-              label="상태"
-              size="md"
-            />
+            <div className="space-y-2">
+              <Label htmlFor="role">역할</Label>
+              <select
+                {...register("role")}
+                className={cn(
+                  "border-input bg-background ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                  errors.role && "border-destructive"
+                )}
+              >
+                <option value="user">사용자</option>
+                <option value="moderator">운영자</option>
+                <option value="admin">관리자</option>
+              </select>
+              {errors.role && (
+                <p className="text-sm text-destructive">
+                  {errors.role.message}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="status">상태</Label>
+              <select
+                {...register("status")}
+                className="border-input bg-background ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <option value="active">활성</option>
+                <option value="inactive">비활성</option>
+                <option value="suspended">정지</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
+
       <div className="modal-footer">
-        <Button variant="outline" onClick={onCancel}>
+        <Button type="button" variant="outline" onClick={onCancel}>
           취소
         </Button>
-        <Button onClick={handleSubmit}>
-          {isEditMode ? "수정 완료" : "생성"}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "처리중..." : isEditMode ? "수정 완료" : "생성"}
         </Button>
       </div>
-    </>
+    </form>
   );
 };
