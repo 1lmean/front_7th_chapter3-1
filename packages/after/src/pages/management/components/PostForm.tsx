@@ -32,7 +32,7 @@ export const PostForm = ({ data, onCancel }: PostFormProps) => {
     defaultValues: {
       title: data?.title ?? "",
       author: data?.author ?? "",
-      category: data?.category ?? undefined,
+      category: data?.category as PostFormData["category"] ?? undefined,
       content: data?.content ?? "",
     },
   });
@@ -45,6 +45,7 @@ export const PostForm = ({ data, onCancel }: PostFormProps) => {
       } else {
         await postService.create({
           ...formData,
+          content: formData.content ?? "",
           status: "draft",
         });
         showSuccess("게시글이 생성되었습니다");
