@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Button } from "./ui/button";
-import { FormInput } from "./templates/FormInput";
-import { FormSelect } from "./templates/FormSelect";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/shared/FormInput";
+import { FormSelect } from "@/components/shared/FormSelect";
 import { ManagementAlert } from "./ManagementAlert";
 import { userService } from "@/services/userService";
-import { useManagementData } from "@/hooks/useManagementData";
-import { useManagementAlert } from "@/hooks/useManagementAlert";
+import { useManagementData } from "../hooks/useManagementData";
+import { useManagementAlert } from "../hooks/useManagementAlert";
 import type { User } from "@/services/userService";
 
 interface UserFormProps {

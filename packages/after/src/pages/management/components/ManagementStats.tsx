@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { ManagementStatCard } from "./MangementStatCard";
 import type { User } from "@/services/userService";
 import type { Post } from "@/services/postService";
-import { useManagementTab } from "@/hooks/useManagementTab";
-import { useManagementData } from "@/hooks/useManagementData";
+import { useManagementTab } from "../hooks/useManagementTab";
+import { useManagementData } from "../hooks/useManagementData";
 
 type StatVariant = "blue" | "green" | "orange" | "red" | "gray";
 

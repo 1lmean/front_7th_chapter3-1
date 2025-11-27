@@ -4,7 +4,7 @@ import { userService } from "@/services/userService";
 import { postService } from "@/services/postService";
 
 import { createContext, useState, type ReactNode } from "react";
-import { useManagementTab } from "@/hooks/useManagementTab";
+import { useManagementTab } from "../hooks/useManagementTab";
 
 type Entity = User | Post;
 

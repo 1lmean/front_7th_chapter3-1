@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ManagementDataContext } from "@/context/ManagementDataContext";
+import { ManagementDataContext } from "../context/ManagementDataContext";
 
 export const useManagementData = () => {
   const context = useContext(ManagementDataContext);

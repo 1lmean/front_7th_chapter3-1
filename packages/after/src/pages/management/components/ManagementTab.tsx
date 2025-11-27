@@ -1,4 +1,4 @@
-import { useManagementTab } from "@/hooks/useManagementTab";
+import { useManagementTab } from "../hooks/useManagementTab";
 
 export const ManagementTab = () => {
   const { entityType, setEntityType } = useManagementTab();

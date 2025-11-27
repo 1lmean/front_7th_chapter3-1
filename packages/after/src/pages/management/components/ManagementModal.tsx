@@ -1,6 +1,6 @@
-import { useManagementTab } from "@/hooks/useManagementTab";
-import { PostForm } from "../PostForm";
-import { UserForm } from "../UserForm";
+import { useManagementTab } from "../hooks/useManagementTab";
+import { PostForm } from "./PostForm";
+import { UserForm } from "./UserForm";
 import type { Post } from "@/services/postService";
 import type { User } from "@/services/userService";
 

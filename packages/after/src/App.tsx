@@ -1,6 +1,6 @@
 import React from "react";
-import { Header } from "./components/organisms";
-import { ManagementPage } from "./pages/ManagementPage";
+import { Header } from "./components/shared/Header";
+import { ManagementPage } from "./pages/management/ManagementPage";
 
 export const App: React.FC = () => {
   return (
