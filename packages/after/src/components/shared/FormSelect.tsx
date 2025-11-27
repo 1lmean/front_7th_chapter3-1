@@ -72,7 +72,7 @@ export const FormSelect = ({
         disabled={disabled}
         aria-invalid={!!error}
         className={cn(
-          "border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "border-input bg-transparent dark:bg-input/30 ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           sizeClasses[size],
           widthClasses[width],
           error && "border-destructive"
