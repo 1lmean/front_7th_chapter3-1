@@ -3,7 +3,7 @@ import { FormInput } from "./templates/FormInput";
 import { FormSelect } from "./templates/FormSelect";
 import { FormTextarea } from "./molecules/FormTextarea";
 import { Button } from "./ui/button";
-import { Alert } from "./organisms/Alert";
+import { ManagementAlert } from "./ManagementAlert";
 import { postService } from "@/services/postService";
 import { useManagementData } from "@/hooks/useManagementData";
 import { useManagementAlert } from "@/hooks/useManagementAlert";
@@ -49,9 +49,11 @@ export const PostForm = ({ data, onCancel }: PostFormProps) => {
     <>
       <div className="modal-body">
         {isEditMode && (
-          <Alert variant="info">
-            ID: {data.id} | 생성일: {data.createdAt} | 조회수: {data.views}
-          </Alert>
+          <ManagementAlert
+            message={`ID: ${data.id} | 생성일: ${data.createdAt} | 조회수: ${data.views}`}
+            variant="info"
+            onClose={() => {}}
+          />
         )}
         <div>
           <FormInput
