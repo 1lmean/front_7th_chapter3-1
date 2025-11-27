@@ -4,8 +4,8 @@ export const ManagementTab = () => {
   const { entityType, setEntityType } = useManagementTab();
 
   const baseButtonClass =
-    "px-4 py-2 text-sm border border-gray-400 cursor-pointer rounded";
-  const activeClass = "font-bold bg-blue-600 text-white";
+    "px-4 py-2 text-sm border border-gray-400 cursor-pointer rounded-md";
+  const activeClass = "font-bold bg-primary text-primary-foreground";
   const inactiveClass = "font-normal bg-gray-100 text-gray-800";
 
   return (

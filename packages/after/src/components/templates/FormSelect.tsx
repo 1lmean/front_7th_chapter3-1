@@ -15,10 +15,12 @@ interface FormSelectProps {
   value: string;
   onChange: (value: string) => void;
   error?: string;
+  helpText?: string;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   size?: "sm" | "md" | "lg";
+  width?: "small" | "medium" | "large" | "full";
   className?: string;
 }
 
@@ -28,6 +30,13 @@ const sizeClasses = {
   lg: "h-10 text-base",
 };
 
+const widthClasses = {
+  small: "w-32",
+  medium: "w-48",
+  large: "w-64",
+  full: "w-full",
+};
+
 export const FormSelect = ({
   name,
   label,
@@ -35,10 +44,12 @@ export const FormSelect = ({
   value,
   onChange,
   error,
+  helpText,
   placeholder,
   required = false,
   disabled = false,
   size = "md",
+  width = "full",
   className,
 }: FormSelectProps) => {
   return (
@@ -53,7 +64,11 @@ export const FormSelect = ({
         <SelectTrigger
           id={name}
           aria-invalid={!!error}
-          className={cn(sizeClasses[size], error && "border-destructive")}
+          className={cn(
+            sizeClasses[size],
+            widthClasses[width],
+            error && "border-destructive"
+          )}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
@@ -66,6 +81,9 @@ export const FormSelect = ({
         </SelectContent>
       </Select>
       {error && <p className="text-sm text-destructive">{error}</p>}
+      {helpText && !error && (
+        <p className="text-sm text-muted-foreground">{helpText}</p>
+      )}
     </div>
   );
 };

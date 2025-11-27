@@ -55,7 +55,7 @@ export const PostForm = ({ data, onCancel }: PostFormProps) => {
             onClose={() => {}}
           />
         )}
-        <div>
+        <div className="space-y-4">
           <FormInput
             name="title"
             value={formData.title || ""}
