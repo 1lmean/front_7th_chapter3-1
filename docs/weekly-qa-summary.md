@@ -344,3 +344,4 @@ const getAlertStyles = () => {
 - type(scope): subject 형식 준수
 - 한글 사용, 명령형 ("구현", "수정", "추가")
 
+

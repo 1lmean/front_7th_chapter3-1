@@ -95,7 +95,7 @@ export const UserForm = ({ data, onCancel }: UserFormProps) => {
               <select
                 {...register("role")}
                 className={cn(
-                  "border-input bg-background ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                  "border-input bg-transparent dark:bg-input/30 ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
                   errors.role && "border-destructive"
                 )}
               >
@@ -114,7 +114,7 @@ export const UserForm = ({ data, onCancel }: UserFormProps) => {
               <Label htmlFor="status">상태</Label>
               <select
                 {...register("status")}
-                className="border-input bg-background ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="border-input bg-transparent dark:bg-input/30 ring-offset-background focus:ring-ring flex h-9 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <option value="active">활성</option>
                 <option value="inactive">비활성</option>
