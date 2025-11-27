@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [easy]
+    branches: [main]
 
 jobs:
   build:
@@ -23,17 +23,17 @@ jobs:
       - name: Install deps
         run: pnpm install
 
-      - name: Build
-        run: pnpm run build
+      - name: Build After Package
+        run: pnpm run build:after
 
-      # 404.html 생성 (index.html 복사)
+      # 404.html 생성 (index.html 복사) - SPA 라우팅 지원
       - name: Create 404.html for SPA routing
-        run: cp dist/index.html dist/404.html
+        run: cp packages/after/dist/index.html packages/after/dist/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: packages/after/dist
 
   deploy:
     needs: build
