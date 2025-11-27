@@ -18,7 +18,9 @@ export const ManagementStatCard = ({
   variant = "blue",
 }: ManagementStatCardProps) => {
   return (
-    <div className={`px-4 py-3 border rounded ${variantStyles[variant]}`}>
+    <div 
+      className={`px-4 py-3 border rounded shadow-[--shadow-sm] hover:shadow-[--shadow-md] transition-shadow duration-[--duration-normal] ${variantStyles[variant]}`}
+    >
       <div className="text-xs text-muted-foreground mb-1">{label}</div>
       <div className="text-2xl font-bold">
         {value}

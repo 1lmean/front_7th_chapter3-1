@@ -46,7 +46,7 @@ export const ManagementAlert = ({
         {!isInfo && onClose && (
           <button
             onClick={onClose}
-            className="absolute right-2 top-2 rounded-sm opacity-70 hover:opacity-100 transition-opacity"
+            className="absolute right-2 top-2 rounded-sm opacity-70 hover:opacity-100 transition-opacity duration-[--duration-fast]"
           >
             <X className="h-4 w-4" />
           </button>

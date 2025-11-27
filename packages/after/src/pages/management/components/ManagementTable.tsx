@@ -281,7 +281,7 @@ export const ManagementTable: React.FC<ManagementTableProps> = ({
             {row.status === "draft" && (
               <Button
                 size="sm"
-                className="bg-green-600 hover:bg-green-700 text-white dark:bg-green-700 dark:hover:bg-green-600"
+                className="bg-success hover:bg-success/90 text-success-foreground transition-colors duration-[--duration-fast]"
                 onClick={() => onPublish?.(row.id)}
               >
                 게시

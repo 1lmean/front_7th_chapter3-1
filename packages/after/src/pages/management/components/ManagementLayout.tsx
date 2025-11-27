@@ -7,7 +7,7 @@ export const ManagementLayout: React.FC<{ children: React.ReactNode }> = ({
         <h1 className="text-2xl font-bold mb-1 text-foreground">관리 시스템</h1>
         <p className="text-muted-foreground text-sm">사용자와 게시글을 관리하세요</p>
       </div>
-      <div className="bg-card border border-border p-2.5 rounded-lg">
+      <div className="bg-card border border-border p-2.5 rounded-lg shadow-[--shadow-md]">
         {children}
       </div>
     </div>
