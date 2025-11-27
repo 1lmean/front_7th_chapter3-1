@@ -1,3 +1,5 @@
+import { ThemeToggle } from "./ThemeToggle";
+
 /**
  * Header - 애플리케이션 헤더 컴포넌트
  *
@@ -23,18 +25,21 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* User Info */}
-        <div className="flex items-center gap-3">
-          <div className="text-right">
-            <div className="text-sm font-semibold text-foreground">
-              Demo User
+        {/* User Info & Theme Toggle */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <div className="text-sm font-semibold text-foreground">
+                Demo User
+              </div>
+              <div className="text-xs text-muted-foreground">
+                demo@example.com
+              </div>
             </div>
-            <div className="text-xs text-muted-foreground">
-              demo@example.com
+            <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-base font-semibold text-primary">
+              DU
             </div>
-          </div>
-          <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-base font-semibold text-primary">
-            DU
           </div>
         </div>
       </div>
