@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormInput } from "./templates/FormInput";
 import { FormSelect } from "./templates/FormSelect";
-import { FormTextarea } from "./molecules/FormTextarea";
+import { FormTextarea } from "./templates/FormTextarea";
 import { Button } from "./ui/button";
 import { ManagementAlert } from "./ManagementAlert";
 import { postService } from "@/services/postService";
