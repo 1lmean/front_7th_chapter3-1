@@ -36,9 +36,7 @@ export const Default: Story = {
     <Alert className="w-96">
       <Info className="h-4 w-4" />
       <AlertTitle>알림</AlertTitle>
-      <AlertDescription>
-        기본 알림 메시지입니다.
-      </AlertDescription>
+      <AlertDescription>기본 알림 메시지입니다.</AlertDescription>
     </Alert>
   ),
 };
@@ -49,9 +47,7 @@ export const Destructive: Story = {
     <Alert variant="destructive" className="w-96">
       <CircleX className="h-4 w-4" />
       <AlertTitle>오류</AlertTitle>
-      <AlertDescription>
-        작업 중 오류가 발생했습니다.
-      </AlertDescription>
+      <AlertDescription>작업 중 오류가 발생했습니다.</AlertDescription>
     </Alert>
   ),
 };
@@ -64,43 +60,35 @@ export const AllTypes: Story = {
       <Alert className="border-green-500 bg-green-50 text-green-800 dark:bg-green-900 dark:text-green-200 dark:border-green-800">
         <CircleCheck className="h-4 w-4 text-green-600 dark:text-green-400" />
         <AlertTitle>성공</AlertTitle>
-        <AlertDescription>
-          작업이 완료되었습니다.
-        </AlertDescription>
+        <AlertDescription>작업이 완료되었습니다.</AlertDescription>
       </Alert>
 
       {/* 정보 */}
       <Alert className="border-blue-500 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800">
         <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
         <AlertTitle>정보</AlertTitle>
-        <AlertDescription>
-          참고할 정보입니다.
-        </AlertDescription>
+        <AlertDescription>참고할 정보입니다.</AlertDescription>
       </Alert>
 
       {/* 경고 */}
       <Alert className="border-yellow-500 bg-yellow-50 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800">
         <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
         <AlertTitle>경고</AlertTitle>
-        <AlertDescription>
-          주의가 필요합니다.
-        </AlertDescription>
+        <AlertDescription>주의가 필요합니다.</AlertDescription>
       </Alert>
 
       {/* 오류 */}
-      <Alert variant="destructive">
-        <CircleX className="h-4 w-4" />
+      <Alert className="border-red-500 bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-200 dark:border-red-800">
+        <CircleX className="h-4 w-4 text-red-600 dark:text-red-400" />
         <AlertTitle>오류</AlertTitle>
-        <AlertDescription>
-          문제가 발생했습니다.
-        </AlertDescription>
+        <AlertDescription>문제가 발생했습니다.</AlertDescription>
       </Alert>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: "성공(green), 정보(blue), 경고(yellow), 오류(destructive) 알림 패턴",
+        story: "성공(green), 정보(blue), 경고(yellow), 오류(red) 알림 패턴",
       },
     },
   },
@@ -129,8 +117,8 @@ export const ManagementAlertPattern: Story = {
       </Alert>
 
       {/* 오류 알림 */}
-      <Alert variant="destructive">
-        <CircleX className="h-4 w-4" />
+      <Alert className="border-red-500 bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-200 dark:border-red-800">
+        <CircleX className="h-4 w-4 text-red-600 dark:text-red-400" />
         <AlertTitle>오류</AlertTitle>
         <AlertDescription>삭제에 실패했습니다</AlertDescription>
       </Alert>
@@ -150,12 +138,11 @@ export const DarkModePreview: Story = {
         <AlertTitle>기본 알림</AlertTitle>
         <AlertDescription>다크모드에서 배경색이 변경됩니다.</AlertDescription>
       </Alert>
-      <Alert variant="destructive">
-        <CircleX className="h-4 w-4" />
+      <Alert className="border-red-500 bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-200 dark:border-red-800">
+        <CircleX className="h-4 w-4 text-red-600 dark:text-red-400" />
         <AlertTitle>오류 알림</AlertTitle>
-        <AlertDescription>destructive 토큰이 적용됩니다.</AlertDescription>
+        <AlertDescription>빨간 배경 스타일이 적용됩니다.</AlertDescription>
       </Alert>
     </div>
   ),
 };
-

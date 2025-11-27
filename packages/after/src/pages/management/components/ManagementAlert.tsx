@@ -18,7 +18,8 @@ export const ManagementAlert = ({
   const getAlertStyles = () => {
     if (isSuccess) return "border-green-500 bg-green-50 text-green-800 dark:bg-green-900 dark:text-green-200 dark:border-green-800";
     if (isInfo) return "border-blue-500 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800";
-    return ""; // error는 destructive 기본 스타일
+    // error: 빨간 배경 추가
+    return "border-red-500 bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-200 dark:border-red-800";
   };
 
   const getIcon = () => {
@@ -36,7 +37,7 @@ export const ManagementAlert = ({
   return (
     <div className="mb-2.5">
       <Alert
-        variant={isSuccess || isInfo ? "default" : "destructive"}
+        variant="default"  // ← 모든 경우 default로 변경 (스타일은 className으로 적용)
         className={getAlertStyles()}
       >
         {getIcon()}
