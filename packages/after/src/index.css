@@ -2,6 +2,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Radix Colors - 접근성 검증된 색상 팔레트 */
+@import "@radix-ui/colors/slate.css";
+@import "@radix-ui/colors/slate-dark.css";
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/blue-dark.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/red-dark.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/green-dark.css";
+@import "@radix-ui/colors/amber.css";
+@import "@radix-ui/colors/amber-dark.css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -42,73 +54,121 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/**
+ * Radix Colors 스케일 가이드:
+ * 1-2:   배경 (background)
+ * 3-5:   상호작용 (hover, active)
+ * 6-8:   테두리 (border)
+ * 9-10:  채워진 배경 (solid)
+ * 11-12: 텍스트 (high contrast)
+ */
+
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* 배경/전경 - Slate 사용 */
+  --background: var(--slate-1);
+  --foreground: var(--slate-12);
+
+  /* 카드/팝오버 */
+  --card: var(--slate-1);
+  --card-foreground: var(--slate-12);
+  --popover: var(--slate-1);
+  --popover-foreground: var(--slate-12);
+
+  /* Primary - Blue 사용 */
+  --primary: var(--blue-9);
+  --primary-foreground: white;
+
+  /* Secondary - Slate 사용 */
+  --secondary: var(--slate-3);
+  --secondary-foreground: var(--slate-12);
+
+  /* Muted - Slate 사용 */
+  --muted: var(--slate-3);
+  --muted-foreground: var(--slate-11);
+
+  /* Accent - Slate 사용 */
+  --accent: var(--slate-4);
+  --accent-foreground: var(--slate-12);
+
+  /* Destructive - Red 사용 */
+  --destructive: var(--red-9);
+
+  /* 테두리/입력/링 */
+  --border: var(--slate-6);
+  --input: var(--slate-6);
+  --ring: var(--blue-7);
+
+  /* 차트 색상 */
+  --chart-1: var(--blue-9);
+  --chart-2: var(--green-9);
+  --chart-3: var(--amber-9);
+  --chart-4: var(--red-9);
+  --chart-5: var(--slate-9);
+
+  /* 사이드바 */
+  --sidebar: var(--slate-2);
+  --sidebar-foreground: var(--slate-12);
+  --sidebar-primary: var(--blue-9);
+  --sidebar-primary-foreground: white;
+  --sidebar-accent: var(--slate-4);
+  --sidebar-accent-foreground: var(--slate-12);
+  --sidebar-border: var(--slate-6);
+  --sidebar-ring: var(--blue-7);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* 배경/전경 - Slate Dark 사용 */
+  --background: var(--slate-1);
+  --foreground: var(--slate-12);
+
+  /* 카드/팝오버 */
+  --card: var(--slate-2);
+  --card-foreground: var(--slate-12);
+  --popover: var(--slate-2);
+  --popover-foreground: var(--slate-12);
+
+  /* Primary - Blue Dark 사용 */
+  --primary: var(--blue-9);
+  --primary-foreground: white;
+
+  /* Secondary - Slate Dark 사용 */
+  --secondary: var(--slate-4);
+  --secondary-foreground: var(--slate-12);
+
+  /* Muted - Slate Dark 사용 */
+  --muted: var(--slate-4);
+  --muted-foreground: var(--slate-11);
+
+  /* Accent - Slate Dark 사용 */
+  --accent: var(--slate-5);
+  --accent-foreground: var(--slate-12);
+
+  /* Destructive - Red Dark 사용 */
+  --destructive: var(--red-9);
+
+  /* 테두리/입력/링 */
+  --border: var(--slate-6);
+  --input: var(--slate-6);
+  --ring: var(--blue-7);
+
+  /* 차트 색상 */
+  --chart-1: var(--blue-9);
+  --chart-2: var(--green-9);
+  --chart-3: var(--amber-9);
+  --chart-4: var(--red-9);
+  --chart-5: var(--slate-9);
+
+  /* 사이드바 */
+  --sidebar: var(--slate-2);
+  --sidebar-foreground: var(--slate-12);
+  --sidebar-primary: var(--blue-9);
+  --sidebar-primary-foreground: white;
+  --sidebar-accent: var(--slate-5);
+  --sidebar-accent-foreground: var(--slate-12);
+  --sidebar-border: var(--slate-6);
+  --sidebar-ring: var(--blue-7);
 }
 
 @layer base {
